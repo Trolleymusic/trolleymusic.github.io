@@ -1,0 +1,482 @@
+/*
+ * HTML5 Boilerplate
+ *
+ * What follows is the result of much research on cross-browser styling.
+ * Credit left inline and big thanks to Nicolas Gallagher, Jonathan Neal,
+ * Kroc Camen, and the H5BP dev community and team.
+ */
+
+/* ==========================================================================
+   Base styles: opinionated defaults
+   ========================================================================== */
+
+html,
+button,
+input,
+select,
+textarea {
+    color: #222;
+}
+
+body {
+    font-size: 1em;
+    line-height: 1.4;
+}
+
+/*
+ * Remove text-shadow in selection highlight: h5bp.com/i
+ * These selection rule sets have to be separate.
+ * Customize the background color to match your design.
+ */
+
+::-moz-selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+::selection {
+    background: #b3d4fc;
+    text-shadow: none;
+}
+
+/*
+ * A better looking default horizontal rule
+ */
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+/*
+ * Remove the gap between images and the bottom of their containers: h5bp.com/i/440
+ */
+
+img {
+    vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+    resize: vertical;
+}
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+   
+/* @license
+ * MyFonts Webfont Build ID 2556056, 2013-05-14T16:50:03-0400
+ * 
+ * The fonts listed in this notice are subject to the End User License
+ * Agreement(s) entered into by the website owner. All other parties are 
+ * explicitly restricted from using the Licensed Webfonts(s).
+ * 
+ * You may obtain a valid license at the URLs below.
+ * 
+ * Webfont: Brandon Grotesque Bold by HVD Fonts
+ * URL: http://www.myfonts.com/fonts/hvdfonts/brandon-grotesque/bold/
+ * 
+ * Webfont: Brandon Grotesque Medium by HVD Fonts
+ * URL: http://www.myfonts.com/fonts/hvdfonts/brandon-grotesque/medium/
+ * 
+ * 
+ * License: http://www.myfonts.com/viewlicense?type=web&buildid=2556056
+ * Webfonts copyright: Copyright (c) 2009 by Hannes von Doehren. All rights reserved.
+ * 
+ * © 2013 MyFonts Inc
+*/
+
+@import "compass";
+
+/* @import must be at top of file, otherwise CSS will not work */
+//@import url("//hello.myfonts.net/count/2703ea");
+
+  
+@font-face {font-family: 'BrandonGrotesque-Regular';src: url('webfonts/2703EA_0_0.eot');src: url('webfonts/2703EA_0_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2703EA_0_0.woff') format('woff'),url('webfonts/2703EA_0_0.ttf') format('truetype');}
+ 
+  
+@font-face {font-family: 'BrandonGrotesque-Medium';src: url('webfonts/2703EA_1_0.eot');src: url('webfonts/2703EA_1_0.eot?#iefix') format('embedded-opentype'),url('webfonts/2703EA_1_0.woff') format('woff'),url('webfonts/2703EA_1_0.ttf') format('truetype');}
+
+   
+@mixin keyframes($name) {
+	@-webkit-keyframes #{$name} { @content; }
+       @-moz-keyframes #{$name} { @content; }
+         @-o-keyframes #{$name} { @content; }
+            @keyframes #{$name} { @content; }
+}
+
+
+@mixin animation($name, $params) {
+	-webkit-animation: $name #{$params};
+	   -moz-animation: $name #{$params};
+	     -o-animation: $name #{$params};
+	        animation: $name #{$params};
+}
+
+
+$base-color: #ff00cc;
+$shadow-distance: 0.05em;
+$break: 720px;
+
+@mixin cycle($what : "text") {
+	$params : 20s ease-in-out 0s infinite alternate both;
+	@if ($what == "text") {
+		@include animation(colour-cycle, $params);
+	} @else if ($what == "background") {
+		@include animation(colour-cycle-background, $params);
+	}
+}
+
+body {
+	background: $base-color;
+	@include background(linear-gradient(top left, $base-color, adjust-hue($base-color, 99%)));
+	@include background-size(400% 400%);
+	
+	font-family: 'BrandonGrotesque-Regular', sans-serif;
+	font-size: 10px;
+	position: relative;
+	
+	@include cycle("background");
+}
+
+.main {
+	@include box-sizing(border-box);
+	min-height: 100%;
+	min-height: 100vh;
+	padding: 1em;
+	padding: 1rem;
+	position: relative;
+}
+
+h1 {
+	//border-bottom-color: $base-color;
+	//border-bottom-style: solid;
+	//border-bottom-width: 5px;
+	color: #000;
+
+	font-size: 20em;
+	font-size: 10rem;
+	font-size: 13vw;
+
+	letter-spacing: -0.05em;
+
+	line-height: 19em;
+	line-height: 9rem;
+	line-height: 12vw;
+	
+	margin: 0;
+	margin-bottom: 0.5em;
+	margin-bottom: 3rem;
+	margin-bottom: 6vw;
+	padding: 1rem 0 0 0;
+	position: relative;
+	
+	text-indent: -3px;
+	
+	//text-shadow: 0.05em 0.05em 0 adjust-hue($base-color, 50%);
+	
+	//@include cycle();
+	
+	@media screen and (min-width: $break + 1px) {
+		font-size: 2em;
+		font-size: 5rem;
+		line-height: 5rem;
+		margin: 0 auto 1.5rem auto;
+		width: $break;
+	}
+	
+}
+
+h2 {
+	font-size: 2em;
+	font-size: 1rem;
+	font-size: 5vw;
+	
+	margin: 0;
+	padding: 0;
+	position: relative;
+	
+	@media screen and (min-width: $break + 1px) {
+		font-size: 2em;
+		font-size: 3rem;
+		margin: 0 auto;
+		width: $break;
+	}
+	
+}
+
+.content {
+	font-size: 1em;
+	font-size: 1.2rem;
+
+	padding: 0;
+	position: relative;
+	
+	a {
+	
+		color: #000;
+	
+		&:hover {
+			$box-color : adjust-hue($base-color, 33%);
+			box-shadow: 0 0 0 0.5rem $box-color;
+			background: $box-color;
+		}
+	}
+	
+	@media screen and (min-width: $break + 1px) {
+		font-size: 1em;
+		font-size: 2rem;
+		margin: 0 auto;
+		width: $break;
+	}
+	
+}
+
+@include keyframes(colour-cycle) {
+
+	$from : adjust-hue($base-color, 50%);
+	$to : adjust-hue($base-color, 150%);
+
+	from {
+		border-bottom-color: $from;
+		border-bottom-color: rgba($from, 0.5);
+		text-shadow: $shadow-distance $shadow-distance 0 $from;
+		text-shadow: $shadow-distance $shadow-distance 0 rgba($from, 0.5);
+	}
+	to {
+		border-bottom-color: $to;
+		border-bottom-color: rgba($to, 0.5);
+		text-shadow: $shadow-distance $shadow-distance 0 $to;
+		text-shadow: $shadow-distance $shadow-distance 0 rgba($to, 0.5);
+	}
+}
+
+@include keyframes(colour-cycle-background) {
+	from {
+		//background: adjust-hue($base-color, 66%); 
+		//@include background(linear-gradient(top, $base-color, adjust-hue($base-color, 99%)));
+		background-position: 0 0;
+	}
+	to {
+		//background: adjust-hue($base-color, 166%); 
+		//@include background(linear-gradient(top, adjust-hue($base-color, 99%), adjust-hue($base-color, 199%)));
+		background-position: 100% 100%;
+	}
+}
+
+
+
+
+
+
+
+
+
+
+/* ==========================================================================
+   Helper classes
+   ========================================================================== */
+
+/*
+ * Image replacement
+ */
+
+.ir {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    /* IE 6/7 fallback */
+    *text-indent: -9999px;
+}
+
+.ir:before {
+    content: "";
+    display: block;
+    width: 0;
+    height: 150%;
+}
+
+/*
+ * Hide from both screenreaders and browsers: h5bp.com/u
+ */
+
+.hidden {
+    display: none !important;
+    visibility: hidden;
+}
+
+/*
+ * Hide only visually, but have it available for screenreaders: h5bp.com/v
+ */
+
+.visuallyhidden {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}
+
+/*
+ * Extends the .visuallyhidden class to allow the element to be focusable
+ * when navigated to via the keyboard: h5bp.com/p
+ */
+
+.visuallyhidden.focusable:active,
+.visuallyhidden.focusable:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto;
+}
+
+/*
+ * Hide visually and from screenreaders, but maintain layout
+ */
+
+.invisible {
+    visibility: hidden;
+}
+
+/*
+ * Clearfix: contain floats
+ *
+ * For modern browsers
+ * 1. The space content is one way to avoid an Opera bug when the
+ *    `contenteditable` attribute is included anywhere else in the document.
+ *    Otherwise it causes space to appear at the top and bottom of elements
+ *    that receive the `clearfix` class.
+ * 2. The use of `table` rather than `block` is only necessary if using
+ *    `:before` to contain the top-margins of child elements.
+ */
+
+.clearfix:before,
+.clearfix:after {
+    content: " "; /* 1 */
+    display: table; /* 2 */
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+/*
+ * For IE 6/7 only
+ * Include this rule to trigger hasLayout and contain floats.
+ */
+
+.clearfix {
+    *zoom: 1;
+}
+
+/* ==========================================================================
+   EXAMPLE Media Queries for Responsive Design.
+   These examples override the primary ('mobile first') styles.
+   Modify as content requires.
+   ========================================================================== */
+
+@media only screen and (min-width: 35em) {
+    /* Style adjustments for viewports that meet the condition */
+}
+
+@media print,
+       (-o-min-device-pixel-ratio: 5/4),
+       (-webkit-min-device-pixel-ratio: 1.25),
+       (min-resolution: 120dpi) {
+    /* Style adjustments for high resolution devices */
+}
+
+/* ==========================================================================
+   Print styles.
+   Inlined to avoid required HTTP connection: h5bp.com/r
+   ========================================================================== */
+
+@media print {
+    * {
+        background: transparent !important;
+        color: #000 !important; /* Black prints faster: h5bp.com/s */
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    a,
+    a:visited {
+        text-decoration: underline;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    abbr[title]:after {
+        content: " (" attr(title) ")";
+    }
+
+    /*
+     * Don't show links for images, or javascript/internal links
+     */
+
+    .ir a:after,
+    a[href^="javascript:"]:after,
+    a[href^="#"]:after {
+        content: "";
+    }
+
+    pre,
+    blockquote {
+        border: 1px solid #999;
+        page-break-inside: avoid;
+    }
+
+    thead {
+        display: table-header-group; /* h5bp.com/t */
+    }
+
+    tr,
+    img {
+        page-break-inside: avoid;
+    }
+
+    img {
+        max-width: 100% !important;
+    }
+
+    @page {
+        margin: 0.5cm;
+    }
+
+    p,
+    h2,
+    h3 {
+        orphans: 3;
+        widows: 3;
+    }
+
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+}
